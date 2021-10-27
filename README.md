@@ -1,2 +1,2 @@
 # room-meet-manager
-MAnager for rooms in Java with Angular 
+Manager for rooms in Java with Angular 
