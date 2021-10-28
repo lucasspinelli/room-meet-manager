@@ -21,16 +21,16 @@ public class RoomController {
     @Autowired
     private RoomRepository repository;
 
-    @GetMapping("/room")
+    @GetMapping("/rooms")
     public List<Room> getAllRooms(){
         return repository.findAll();
     }
 
-    @GetMapping("/room/{id}")
+    @GetMapping("/rooms/{id}")
     public ResponseEntity<Room> getRoomById(@PathVariable(value= "id") long id)
     throws ResourceNotFoundException {
         Room room = repository.findById(id)
-                .orElseThrow(()-> new ResourceNotFoundException("Room not foun:: " + id));
+                .orElseThrow(()-> new ResourceNotFoundException("Room not found:: " + id));
         return ResponseEntity.ok().body(room);
     }
 
@@ -52,6 +52,7 @@ public class RoomController {
         return ResponseEntity.ok(updatedRoom);
     }
 
+    @DeleteMapping("/rooms/delete/{id}")
     public Map<String, Boolean> deleteRoom(@PathVariable(value = "id") long id)
         throws ResourceNotFoundException{
         Room room = repository.findById(id)
